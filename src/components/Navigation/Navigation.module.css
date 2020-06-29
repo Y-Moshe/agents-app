@@ -1,0 +1,44 @@
+*:focus {
+    outline: none;
+}
+
+.Navigation {
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.Navigation a {
+    text-decoration: none;
+    font-size: 58px;
+    color: black;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    cursor: pointer;
+    font-weight: 700;
+    transition-duration: 300ms;
+}
+
+.Navigation a:hover {
+    transform: translateX(20px);
+}
+
+.Navigation a:active {
+    cursor: grabbing;
+}
+
+.Active {
+    color: white !important;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    transform: translateX(20px);
+}
+
+@media (min-width: 1374px) {
+    .Navigation {
+        width: 50%;
+        height: 100%;
+        text-align: left;
+    }
+}
