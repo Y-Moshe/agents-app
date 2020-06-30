@@ -1,0 +1,44 @@
+.AgentsHeader {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    padding: 70px;
+}
+
+.Spliter {
+    height: 20vh;
+    background: linear-gradient(to top right, #1a1a26 50%, white 50%);
+}
+
+.AgentsContent {
+    background-color: #1a1a26;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.Video {
+    max-width: 80vw;
+    box-shadow: 0 0 5px white;
+    border-radius: 10px;
+}
+
+@media (min-width: 1374px) {
+    .AgentsHeader {
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .AgentsContent {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .Video {
+        max-height: 400px;
+    }
+}

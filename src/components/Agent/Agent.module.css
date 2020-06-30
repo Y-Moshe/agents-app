@@ -1,10 +1,20 @@
 .AgentContainer {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    color: white;
 }
 
 .AgentImage {
     max-height: 535px;
+}
+
+@media (min-width: 1374px) {
+    .AgentContainer {
+        justify-content: space-between;
+        color: black;
+        flex-wrap: nowrap;
+    }
 }

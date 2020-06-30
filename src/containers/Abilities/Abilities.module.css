@@ -1,0 +1,30 @@
+.Abilities {
+    width: 100%;
+    color: white;
+}
+
+.AbilitiesTitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 54px;
+}
+
+.AbilitiesImages {
+    display: flex;
+    margin: 25px;
+    justify-content: space-around;
+}
+
+.AbilityDescription, .AbilityTitle {
+    text-align: center;
+}
+
+@media (min-width: 1374px) {
+    .Abilities {
+        width: 33%;
+    }
+
+    .AbilityDescription, .AbilityTitle {
+        text-align: left;
+    }
+}

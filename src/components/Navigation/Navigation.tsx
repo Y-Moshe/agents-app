@@ -22,7 +22,9 @@ export default function Navigation(props: NavigationProps) {
             {
                 breakpoint: 1374,
                 settings: {
-                    centerMode: true
+                    centerMode: true,
+                    slidesToShow: 4,
+                    slidesToScroll: 1
                 }
             }
         ]
@@ -37,7 +39,9 @@ export default function Navigation(props: NavigationProps) {
                         draggable={false}
                         activeClassName={classes.Active}
                         to={`${url}/${agentName.toLowerCase()}`}>
-                        <h3 style={{margin: 0}}>{agentName}</h3>
+                        <h3 style={{margin: 0}}>
+                            <sup className={classes.Count}>{i+1}</sup> {agentName}
+                        </h3>
                     </NavLink>
                 ))}
             </Slider>

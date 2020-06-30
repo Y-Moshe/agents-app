@@ -11,6 +11,11 @@
     overflow: hidden;
 }
 
+.Count {
+    font-size: 20px;
+    font-weight: normal;
+}
+
 .Navigation a {
     text-decoration: none;
     font-size: 58px;

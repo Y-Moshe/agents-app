@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import './App.css';
 
-import Agents from './containers/Agent/Agents';
+import Agents from './containers/Agents/Agents';
 
 function App() {
   return (
