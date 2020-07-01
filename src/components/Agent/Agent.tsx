@@ -14,7 +14,11 @@ interface AgentProps extends React.Props<any> {
 export default function Agent(props: AgentProps) {
     return (
         <div className={classes.AgentContainer}>
-            <img src={props?.image} alt="agent" className={classes.AgentImage} />
+            <img
+                draggable={false}
+                src={props?.image}
+                alt="Agent"
+                className={classes.AgentImage} />
             <div className={classes.AgentInfo}>
                 <span>// ROLE</span>
                 <h3>{props?.role}</h3>

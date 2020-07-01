@@ -17,7 +17,7 @@ export default function Ability(props: AbilityProps) {
 
     return (
         <div className={classes2Set} onClick={props.onClick} title={props.name}>
-            <img src={props.image} alt={props.name} className={classes.AbilityImage} />
+            <img draggable={false} src={props.image} alt={props.name} className={classes.AbilityImage} />
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { Route, useRouteMatch, useLocation, matchPath } from 'react-router';
 import classes from './Agents.module.css';
 import Navigation from '../../components/Navigation/Navigation';
 import Agent from '../../components/Agent/Agent';
-import { getAgent, AgentData } from '../../AgentsData';
+import AgentsData, { getAgent, AgentData } from '../../AgentsData';
 import Abilities from '../Abilities/Abilities';
 
 const getParams = (pathname: string, url: string) => {
@@ -32,8 +32,7 @@ export default function Agents(props: React.Props<any>) {
 
     }, [location, url]);
 
-    const links = ['JETT', 'RAZE', 'BREACH', 'OMEN', 'BRIMSTONE',
-        'PHOENIX', 'SAGE', 'SOVA', 'VIPER', 'CYPHER', 'REYNA'];
+    const links = AgentsData.map(agentObject => agentObject.name.toUpperCase());
 
     return (
         <React.Fragment>
