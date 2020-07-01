@@ -15,7 +15,7 @@ export default function Agent(props: AgentProps) {
     return (
         <div className={classes.AgentContainer}>
             <img src={props?.image} alt="agent" className={classes.AgentImage} />
-            <div>
+            <div className={classes.AgentInfo}>
                 <span>// ROLE</span>
                 <h3>{props?.role}</h3>
                 <span>// BIOGRAPHY</span>

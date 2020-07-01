@@ -21,7 +21,8 @@
 
 @media (min-width: 1374px) {
     .Abilities {
-        width: 33%;
+        width: 50%;
+        margin: 20px;
     }
 
     .AbilityDescription, .AbilityTitle {

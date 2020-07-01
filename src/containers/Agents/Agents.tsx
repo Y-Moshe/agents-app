@@ -27,6 +27,7 @@ export default function Agents(props: React.Props<any>) {
 
         if (params && params.agent) {
             setAgent(getAgent(params.agent));
+            setActiveVideo(0);
         }
 
     }, [location, url]);
@@ -50,12 +51,13 @@ export default function Agents(props: React.Props<any>) {
                 <Abilities
                     abilities={agent?.abilities}
                     onClick={(index) => setActiveVideo(index)} />
-                <video
-                    className={classes.Video}
-                    loop
-                    autoPlay
-                    src={agent?.abilities[activeVideo].videoURL}>
-                </video>
+                <div className={classes.Video}>
+                    <video
+                        loop
+                        autoPlay
+                        src={agent?.abilities[activeVideo].videoURL}>
+                    </video>
+                </div>
             </div>}
         </React.Fragment>
     )

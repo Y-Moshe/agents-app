@@ -1,6 +1,6 @@
 .AgentsHeader {
     width: 100%;
-    height: auto;
+    min-height: 100vh;
     background-color: white;
     padding: 70px;
 }
@@ -16,19 +16,25 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     padding: 20px;
 }
 
 .Video {
-    max-width: 80vw;
+    width: 600px;
+    height: 338px;
     box-shadow: 0 0 5px white;
+    border-radius: 10px;
+}
+
+.Video video {
+    width: 600px;
+    height: 338px;
     border-radius: 10px;
 }
 
 @media (min-width: 1374px) {
     .AgentsHeader {
-        height: 100vh;
         display: flex;
         justify-content: space-between;
     }
@@ -39,6 +45,12 @@
     }
 
     .Video {
-        max-height: 400px;
+        width: 750px;
+        height: 422px;
+    }
+
+    .Video video {
+        width: 750px;
+        height: 422px;
     }
 }

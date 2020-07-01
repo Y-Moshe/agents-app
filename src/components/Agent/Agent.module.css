@@ -4,15 +4,20 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    color: white;
+}
+
+.AgentInfo {
+    font-size: 1.5em;
+    margin: 20px;
 }
 
 .AgentImage {
-    max-height: 535px;
+    height: 75%;
 }
 
 @media (min-width: 1374px) {
     .AgentContainer {
+        width: 90%;
         justify-content: space-between;
         color: black;
         flex-wrap: nowrap;
