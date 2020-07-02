@@ -16,6 +16,9 @@
 
 .Active {
     opacity: 1;
+    border-radius: 15%;
+    transform: scale(1.2);
+    background-color: tomato;
 }
 
 .AbilityImage {
