@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, useRouteMatch, useLocation, matchPath } from 'react-router';
+import { Route, useRouteMatch, matchPath, RouteChildrenProps } from 'react-router';
 import { PuffLoader } from 'react-spinners';
 
 import classes from './Agents.module.css';
@@ -16,9 +16,10 @@ const getParams = (pathname: string, url: string) => {
     return matchProfile && matchProfile.params;
 };
 
-export default function Agents(props: React.Props<any>) {
+interface AgentsProps extends React.Props<any>, RouteChildrenProps {}
+
+export default function Agents(props: AgentsProps) {
     const { url } = useRouteMatch();
-    const location = useLocation();
 
     const [agent, setAgent] = useState<AgentData>();
     const [activeVideo, setActiveVideo] = useState(0);
@@ -26,7 +27,7 @@ export default function Agents(props: React.Props<any>) {
     const [isAgentLoad, setIsAgentLoad] = useState(false);
 
     useEffect(() => {
-        const params: any = getParams(location.pathname, url);
+        const params: any = getParams(props.location.pathname, url);
 
         if (params && params.agent) {
             setAgent(getAgent(params.agent));
@@ -37,7 +38,7 @@ export default function Agents(props: React.Props<any>) {
             }, 200);
         }
 
-    }, [location, url]);
+    }, [props.location, url]);
 
     const links = AgentsData.map(agentObject => agentObject.name.toUpperCase());
 
@@ -45,15 +46,16 @@ export default function Agents(props: React.Props<any>) {
         <React.Fragment>
             <header className={classes.AgentsHeader}>
                 <Navigation links={links} />
-                <Route path={`${url}/:agent`} render={() => (
+                {props.match?.isExact && <div className={classes.AgentsBackgroundImage}></div>}
+                <Route path={`${url}/:agent`} render={(p) => (
                     <Agent
+                        {...p}
                         in={isAgentLoad}
                         image={agent?.image}
                         role={agent?.role}
                         biography={agent?.biography} />
                 )}  />
             </header>
-            <div className={classes.Spliter}></div>
             {agent && <div className={classes.AgentsContent}>
                 <Abilities
                     abilities={agent?.abilities}

@@ -9,6 +9,8 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-family: 'Mukta', sans-serif;
+    z-index: 1;
 }
 
 .Count {
@@ -18,8 +20,8 @@
 
 .Navigation a {
     text-decoration: none;
-    font-size: 58px;
-    color: black;
+    font-size: 48px;
+    color: white;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
     cursor: pointer;
     font-weight: 700;
@@ -35,14 +37,14 @@
 }
 
 .Active {
-    color: white !important;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    text-shadow: 0 0 15px #0089f5 !important;
     transform: translateX(20px);
 }
 
 @media (min-width: 1374px) {
     .Navigation {
-        width: 50%;
+        margin-left: 100px;
+        width: 430px;
         height: 100%;
         text-align: left;
     }

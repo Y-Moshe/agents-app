@@ -5,12 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// for Production add basename="/index.php"!
+// For Production build add basename="/index.php"!
 ReactDOM.render(
   <Router>
     <App />
   </Router>,
-  document.getElementById('root') // for Production change to "react-root"!
+  document.getElementById('react-root')
 );
 
 // If you want your app to work offline and load faster, you can change

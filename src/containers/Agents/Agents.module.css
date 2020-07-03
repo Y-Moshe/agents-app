@@ -3,11 +3,22 @@
     min-height: 100vh;
     background-color: white;
     padding: 70px;
+    background-image: url(http://playvalorant.co.il/wp-content/uploads/2020/07/19201080333-1.png);
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position: relative;
 }
 
-.Spliter {
-    height: 20vh;
-    background: linear-gradient(to top right, #1a1a26 50%, white 50%);
+.AgentsBackgroundImage {
+    position: absolute;
+    right: 10%;
+    width: 80%;
+    min-height: 90vh;
+    background-image: url(http://playvalorant.co.il/wp-content/uploads/2020/07/19201080333989.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .AgentsContent {
@@ -36,10 +47,14 @@
     border-radius: 10px;
 }
 
+.AgentsImage {
+    height: 500px;
+}
+
 @media (min-width: 1374px) {
     .AgentsHeader {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
     }
 
     .AgentsContent {
@@ -55,5 +70,9 @@
     .Video video {
         width: 750px;
         height: 422px;
+    }
+
+    .AgentsBackgroundImage {
+        right: 0;
     }
 }
