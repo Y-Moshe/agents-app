@@ -34,15 +34,15 @@ export default function Navigation(props: NavigationProps) {
         <nav className={classes.Navigation}>
             <Slider {...sliderConfig} >
                 {props.links.map((agentName, i) => (
-                    <NavLink
-                        key={i}
-                        draggable={false}
-                        activeClassName={classes.Active}
-                        to={`${url}/${agentName.toLowerCase()}`}>
-                        <h3 style={{height: 0}}>
-                            <sup className={classes.Count}>{i+1}</sup> {agentName}
-                        </h3>
-                    </NavLink>
+                    <h3 key={`${agentName}-${i}`}>
+                        <NavLink
+                            draggable={false}
+                            className={classes.Link}
+                            activeClassName={classes.Active}
+                            to={`${url}/${agentName.toLowerCase()}`}>
+                                <sup className={classes.Count}>{i+1}</sup>{agentName}
+                        </NavLink>
+                    </h3>
                 ))}
             </Slider>
         </nav>

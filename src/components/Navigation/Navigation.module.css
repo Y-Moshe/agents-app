@@ -4,7 +4,7 @@
 
 .Navigation {
     width: 100%;
-    height: 50%;
+    height: auto;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -18,22 +18,21 @@
     font-weight: normal;
 }
 
-.Navigation a {
+.Navigation h3:active {
+    cursor: grabbing;
+}
+
+.Link {
     text-decoration: none;
+    cursor: pointer;
     font-size: 48px;
     color: white;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-    cursor: pointer;
     font-weight: 700;
     transition-duration: 300ms;
 }
 
-.Navigation a:hover {
+.Link:hover {
     transform: translateX(20px);
-}
-
-.Navigation a:active {
-    cursor: grabbing;
 }
 
 .Active {
@@ -45,7 +44,6 @@
     .Navigation {
         margin-left: 100px;
         width: 430px;
-        height: 100%;
         text-align: left;
     }
 }

@@ -66,7 +66,7 @@ export default function Agents(props: AgentsProps) {
                         loading={isLoading}
                         color="white" />
                     <video
-                        hidden={isLoading}
+                        style={{display: isLoading ? 'none' : 'block'}}
                         loop
                         autoPlay
                         onLoadStart={() => setIsLoading(true)}
