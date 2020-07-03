@@ -5,9 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// For Production build add basename="/index.php"!
+// The basename is required to work with wordpress at /index.php/agents/:agentName
 ReactDOM.render(
-  <Router>
+  <Router basename="/index.php"> 
     <App />
   </Router>,
   document.getElementById('react-root')
