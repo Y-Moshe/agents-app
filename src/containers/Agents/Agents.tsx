@@ -35,7 +35,7 @@ export default function Agents(props: AgentsProps) {
             setIsAgentLoad(false);
             setTimeout(() => {
                 setIsAgentLoad(true);
-            }, 200);
+            }, 300);
         }
 
     }, [props.location, url]);

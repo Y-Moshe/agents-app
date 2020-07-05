@@ -33,7 +33,7 @@ export default function Abilities(props: AbilitiesProps) {
         setShowInfo(false);
         setTimeout(() => {
             setShowInfo(true);
-        }, 200);
+        }, 300);
     }, [ability]);
     
     useEffect(() => {
