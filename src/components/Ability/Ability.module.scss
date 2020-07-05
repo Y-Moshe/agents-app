@@ -3,15 +3,15 @@
     margin: 7px;
     cursor: pointer;
     transition-duration: 0.3s;
-}
 
-.Ability:hover {
-    opacity: 1;
-}
+    &:hover {
+        opacity: 1;
+    }
 
-.Ability:active {
-    border-radius: 30%;
-    background-color: tomato;
+    &:active {
+        border-radius: 30%;
+        background-color: tomato;
+    }
 }
 
 .Active {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Transition } from 'react-transition-group';
 
-import classes from './Agent.module.css';
+import classes from './Agent.module.scss';
 
 interface AgentProps extends React.Props<any> {
     // Path to image

@@ -1,0 +1,52 @@
+@import '../../scss/variables.scss';
+$active-color: #0089f5;
+
+*:focus {
+    outline: none;
+}
+
+.Navigation {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 1;
+
+    h3 {
+        margin: 0;
+        padding: 0;
+        height: 48px;
+        transition-duration: 300ms;
+    }
+
+    h3:hover {
+        transform: translateX(20px);
+    }
+
+    @media (min-width: $break-point) {
+        margin-left: 100px;
+        width: 430px;
+        text-align: left;
+    }
+}
+
+.Count {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.Link {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 48px;
+    color: $preferred-color;
+    font-family: $font-stack;
+    font-weight: 700;
+}
+
+.Active {
+    text-shadow: 0 0 15px $active-color !important;
+    transform: translateX(20px);
+}

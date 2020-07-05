@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, useRouteMatch, matchPath, RouteChildrenProps } from 'react-router';
 import { PuffLoader } from 'react-spinners';
 
-import classes from './Agents.module.css';
+import classes from './Agents.module.scss';
 import Navigation from '../../components/Navigation/Navigation';
 import Agent from '../../components/Agent/Agent';
 import AgentsData, { getAgent, AgentData } from '../../AgentsData';

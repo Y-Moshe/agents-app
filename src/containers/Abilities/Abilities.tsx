@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
 
-import classes from './Abilities.module.css';
+import classes from './Abilities.module.scss';
 import Ability from '../../components/Ability/Ability';
 import { AbilityData } from '../../AgentsData';
 

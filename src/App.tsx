@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router';
-import './App.css';
 
 import Agents from './containers/Agents/Agents';
 

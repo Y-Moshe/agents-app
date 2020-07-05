@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import Slider, { Settings } from 'react-slick';
 
-import classes from './Navigation.module.css';
+import classes from './Navigation.module.scss';
 
 interface NavigationProps extends React.Props<any> {
     links: string[];

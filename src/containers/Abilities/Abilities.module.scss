@@ -1,7 +1,14 @@
+@import '../../scss/variables.scss';
+
 .Abilities {
     width: 100%;
-    color: white;
-    font-family: 'Mukta', sans-serif;
+    color: $preferred-color;
+    font-family: $font-stack;
+
+    @media (min-width: $break-point) {
+        width: 50%;
+        margin: 20px;
+    }
 }
 
 .AbilitiesTitle {
@@ -18,15 +25,8 @@
 
 .AbilityDescription, .AbilityTitle {
     text-align: center;
-}
 
-@media (min-width: 1374px) {
-    .Abilities {
-        width: 50%;
-        margin: 20px;
-    }
-
-    .AbilityDescription, .AbilityTitle {
+    @media (min-width: $break-point) {
         text-align: left;
     }
 }

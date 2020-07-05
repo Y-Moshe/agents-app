@@ -1,31 +1,31 @@
+@import '../../scss/variables.scss';
+
 .AgentContainer {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-}
 
-.AgentInfo {
-    font-size: 24px;
-    margin: 20px;
-    color: #F3F3F3;
-    font-family: 'Mukta', sans-serif;
-}
-
-.AgentImage {
-    max-height: 70vh;
-}
-
-@media (min-width: 1374px) {
-    .AgentContainer {
+    @media (min-width: $break-point) {
         width: 90%;
         justify-content: space-between;
         color: black;
         flex-wrap: nowrap;
     }
+}
 
-    .AgentImage {
+.AgentImage {
+    max-height: 70vh;
+
+    @media (min-width: $break-point) {
         height: 75%;
     }
+}
+
+.AgentInfo {
+    font-size: 24px;
+    margin: 20px;
+    color: $preferred-color;
+    font-family: $font-stack;
 }

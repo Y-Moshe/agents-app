@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './Ability.module.css';
+import classes from './Ability.module.scss';
 
 export interface AbilityProps extends React.Props<any> {
     // Ability name
