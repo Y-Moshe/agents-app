@@ -20,11 +20,23 @@ export default function Navigation(props: NavigationProps) {
         verticalSwiping: true,
         responsive: [
             {
-                breakpoint: 1374,
+                breakpoint: 1200,
                 settings: {
                     centerMode: true,
-                    slidesToShow: 3,
-                    slidesToScroll: 1
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    vertical: false,
+                    verticalSwiping: false,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    centerMode: true,
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    vertical: false,
+                    verticalSwiping: false,
                 }
             }
         ]
@@ -34,7 +46,8 @@ export default function Navigation(props: NavigationProps) {
         <nav className={classes.Navigation}>
             <Slider {...sliderConfig} >
                 {props.links.map((agentName, i) => (
-                    <h3 key={`${agentName}-${i}`}>
+                    <h3 key={`${agentName}-${i}`}
+                        className={classes.LinkHeader}>
                         <NavLink
                             draggable={false}
                             className={classes.Link}

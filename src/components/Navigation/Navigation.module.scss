@@ -6,47 +6,63 @@ $active-color: #0089f5;
 }
 
 .Navigation {
-    width: 100%;
-    height: auto;
     text-align: center;
+    overflow: hidden;
+    border-bottom: 2px solid $active-color;
+
+    @media (min-width: $breakpoint) {
+        text-align: left;
+        border: none;
+    }
+}
+
+.LinkHeader {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    z-index: 1;
+    transition-duration: 300ms;
 
-    h3 {
-        margin: 0;
-        padding: 0;
-        height: 48px;
-        transition-duration: 300ms;
+    &:hover {
+        transform: scale(1.2);
+
+        @media (min-width: $breakpoint) {
+            transform: translateX(20px);
+        }
+    }
+}
+
+.Link {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 36px;
+    color: $preferred-color;
+    font-family: $font-stack;
+    font-weight: 700;
+
+    &:hover {
+        color: $preferred-color;
+        text-decoration: none;
     }
 
-    h3:hover {
-        transform: translateX(20px);
-    }
-
-    @media (min-width: $break-point) {
-        margin-left: 100px;
-        width: 430px;
-        text-align: left;
+    @media (min-width: $breakpoint) {
+        font-size: 48px;
     }
 }
 
 .Count {
     font-size: 20px;
     font-weight: normal;
-}
-
-.Link {
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 48px;
-    color: $preferred-color;
-    font-family: $font-stack;
-    font-weight: 700;
+    display: none;
+    
+    @media (min-width: $breakpoint) {
+        display: initial;
+    }
 }
 
 .Active {
+    transform: scale(1.2);
     text-shadow: 0 0 15px $active-color !important;
-    transform: translateX(20px);
+
+    @media (min-width: $breakpoint) {
+        transform: translateX(20px);
+    }
 }

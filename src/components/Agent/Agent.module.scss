@@ -2,24 +2,20 @@
 
 .AgentContainer {
     display: flex;
-    width: 100%;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 
-    @media (min-width: $break-point) {
-        width: 90%;
-        justify-content: space-between;
-        color: black;
+    @media (min-width: $breakpoint) {
         flex-wrap: nowrap;
     }
 }
 
 .AgentImage {
-    max-height: 70vh;
+    max-height: 50vh;
 
-    @media (min-width: $break-point) {
-        height: 75%;
+    @media (min-width: $breakpoint) {
+        max-height: 70vh;
     }
 }
 

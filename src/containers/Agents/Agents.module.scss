@@ -1,77 +1,38 @@
 @import '../../scss/variables.scss';
 
-.AgentsHeader {
-    width: 100%;
+.HeaderRow {
+    align-items: center;
     min-height: 100vh;
-    padding: 70px;
     background-image: url($header-bg-url);
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
-    position: relative;
-
-    @media (min-width: $break-point) {
-        display: flex;
-        align-items: center;
-    }
 }
 
-.AgentsBackgroundImage {
-    position: absolute;
-    right: 10%;
-    width: 80%;
-    min-height: 90vh;
-    background-image: url($agents-bg-url);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    @media (min-width: $break-point) {
-        right: 0;
-    }
-}
-
-.AgentsContent {
-    background-color: $content-bg-color;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.ContentRow {
     align-items: center;
+    background-color: $content-bg-color;
     min-height: 100vh;
-    padding: 20px;
-
-    @media (min-width: $break-point) {
-        flex-direction: row;
-        justify-content: space-around;
-    }
+    padding-bottom: 10px;
 }
 
 .Video {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 600px;
-    height: 338px;
-    box-shadow: 0 0 5px white;
-    border-radius: 10px;
-
-    @media (min-width: $break-point) {
-        width: 750px;
-        height: 422px;
+    margin: auto;
+    width: 70vw;
+    height: auto;
+    
+    @media (min-width: $breakpoint) {
+        width: 45vw;
     }
 }
 
 .Video video {
-    width: 600px;
-    height: 338px;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 0 5px white;
     border-radius: 10px;
-
-    @media (min-width: $break-point) {
-        width: 750px;
-        height: 422px;
+    
+    @media (min-width: $breakpoint) {
+        width: 45vw;
     }
-}
-
-.AgentsImage {
-    height: 500px;
 }
