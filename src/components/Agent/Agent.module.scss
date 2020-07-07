@@ -20,8 +20,16 @@
 }
 
 .AgentInfo {
-    font-size: 24px;
     margin: 20px;
     color: $preferred-color;
     font-family: $font-stack;
+
+    span {
+        font-size: 18px !important;
+    }
+
+    p {
+        font-size: 24px !important;
+        margin: 5px !important;
+    }
 }

@@ -46,7 +46,7 @@ export default function Agents(props: AgentsProps) {
     return (
         <Container fluid style={{padding: 0}}>
             <Row className={classes.HeaderRow} noGutters>
-                <Col xl={{offset: 1, span: 3}}>
+                <Col xl={{offset: 1, span: 3}} className={classes.NavColumn}>
                     <Navigation links={links} />
                 </Col>
                 <Col xl="8">

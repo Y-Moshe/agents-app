@@ -9,6 +9,14 @@
     background-repeat: no-repeat;
 }
 
+.NavColumn {
+    align-self: flex-start;
+
+    @media (min-width: $breakpoint) {
+        align-self: center;
+    }
+}
+
 .ContentRow {
     align-items: center;
     background-color: $content-bg-color;

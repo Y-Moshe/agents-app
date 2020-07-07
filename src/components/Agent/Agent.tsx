@@ -58,7 +58,7 @@ export default function Agent(props: AgentProps) {
                         ...agentInfoStyles[state]
                     }}>
                         <span>// ROLE</span>
-                        <h3>{props?.role}</h3>
+                        <p>{props?.role}</p>
                         <span>// BIOGRAPHY</span>
                         <p>{props?.biography}</p>
                     </div>
