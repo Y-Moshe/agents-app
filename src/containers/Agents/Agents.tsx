@@ -6,14 +6,17 @@ import { Container, Row, Col } from 'react-bootstrap';
 import classes from './Agents.module.scss';
 import Navigation from '../../components/Navigation/Navigation';
 import Agent from '../../components/Agent/Agent';
-import AgentsData, { getAgent, AgentData } from '../../AgentsData';
+import AgentsData, { getAgent, AgentData, maps } from '../../AgentsData';
 import Abilities from '../Abilities/Abilities';
+import Maps from '../Maps/Maps';
 
+// a Function returns the params for the given url.
 const getParams = (pathname: string, url: string) => {
     const matchProfile = matchPath(pathname, {
         path: `${url}/:agent`,
         strict: false
     });
+
     return matchProfile && matchProfile.params;
 };
 
@@ -23,26 +26,30 @@ export default function Agents(props: AgentsProps) {
     const { url } = useRouteMatch();
 
     const [agent, setAgent] = useState<AgentData>();
-    const [activeVideo, setActiveVideo] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isAgentLoad, setIsAgentLoad] = useState(false);
+    const [isAgentLoad, setIsAgentLoad] = useState(false); // hold the transition / animation trigger
+    const [activeAbility, setActiveAbility] = useState(0); // hold the index of the ability in ablities array
+    const [isLoading, setIsLoading] = useState(false); // for the spinner
+    const [activeMap, setActiveMap] = useState(''); // the map name, lowercase only!
 
+    // fires when url changes
     useEffect(() => {
         const params: any = getParams(props.location.pathname, url);
 
+        // do the folowing only if 'agent' param exists(/agents/:agent)
         if (params && params.agent) {
             setAgent(getAgent(params.agent));
-            setActiveVideo(0);
-            setIsAgentLoad(false);
+            setActiveAbility(0);
+            setIsAgentLoad(false); // animation is applied
             setTimeout(() => {
-                setIsAgentLoad(true);
+                setIsAgentLoad(true); // animation is applied
             }, 300);
         }
 
     }, [props.location, url]);
 
+    // array of links: ['JETT','RAZE', ...]
     const links = AgentsData.map(agentObject => agentObject.name.toUpperCase());
-
+    
     return (
         <Container fluid style={{padding: 0}}>
             <Row className={classes.HeaderRow} noGutters>
@@ -50,7 +57,8 @@ export default function Agents(props: AgentsProps) {
                     <Navigation links={links} />
                 </Col>
                 <Col xl="8">
-                    {props.match?.isExact &&
+                    { // display agents image if we at exact /agents
+                    props.match?.isExact &&
                      <img
                         draggable={false}
                         src="http://playvalorant.co.il/wp-content/uploads/2020/07/19201080333989.png"
@@ -60,17 +68,18 @@ export default function Agents(props: AgentsProps) {
                         <Agent
                             {...p}
                             in={isAgentLoad}
-                            image={agent?.image}
+                            imgURL={agent?.imgURL}
                             role={agent?.role}
                             biography={agent?.biography} />
                     )}  />
                 </Col>
             </Row>
-            {agent && <Row className={classes.ContentRow} noGutters>
+            {agent && (<>
+            <Row className={classes.ContentRow} noGutters>
                 <Col xl="6" style={{padding: 60}}>
                     <Abilities
                         abilities={agent?.abilities}
-                        onClick={(index) => setActiveVideo(index)} />
+                        onClick={(index) => setActiveAbility(index)} />
                 </Col>
                 <Col xl="6">
                     <PuffLoader
@@ -83,14 +92,38 @@ export default function Agents(props: AgentsProps) {
                         style={{display: isLoading ? 'none' : 'flex'}}>
                         <video
                             loop
+                            controls
                             autoPlay
                             onLoadStart={() => setIsLoading(true)}
                             onLoadedData={() => setIsLoading(false)}
-                            src={agent?.abilities[activeVideo].videoURL}>
+                            src={agent?.abilities[activeAbility].videoURL}>
                         </video>
                     </div>
                 </Col>
-            </Row>}
+            </Row>
+            <h2 className={classes.TipsTitle}>טיפים וטריקים</h2>
+            <Row className={classes.MapsRow} noGutters>
+                <Col xs="12" style={{display: 'flex'}}>
+                    <Maps
+                        maps={maps}
+                        onMapClick={(map) => setActiveMap(map.trim().toLowerCase())} />
+                </Col>
+                <Col xs="12">
+                    <div className={classes.VideoTips} hidden={!activeMap}>
+                        {
+                            // looping through all videos for the selected map
+                            // @ts-ignore
+                        agent && agent.abilities[activeAbility].mapTips[activeMap]
+                            ?.map((vid, i) => (
+                                <video
+                                    key={i + 'ac34s3'}
+                                    controls
+                                    src={vid} />
+                        ))}
+                    </div>
+                </Col>
+
+            </Row></>)}
         </Container>
     )
 }

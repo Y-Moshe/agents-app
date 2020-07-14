@@ -11,7 +11,8 @@ interface NavigationProps extends React.Props<any> {
 export default function Navigation(props: NavigationProps) {
     let { url } = useRouteMatch();
 
-    const sliderConfig: Settings = {
+    // Slider settings, and responsive configuration.
+    const settings: Settings = {
         arrows: false,
         infinite: true,
         slidesToShow: 8,
@@ -20,7 +21,7 @@ export default function Navigation(props: NavigationProps) {
         verticalSwiping: true,
         responsive: [
             {
-                breakpoint: 1200,
+                breakpoint: 1200, // On less then 1200px
                 settings: {
                     centerMode: true,
                     slidesToShow: 4,
@@ -30,7 +31,7 @@ export default function Navigation(props: NavigationProps) {
                 }
             },
             {
-                breakpoint: 768,
+                breakpoint: 768, // On less then 768px
                 settings: {
                     centerMode: true,
                     slidesToShow: 2,
@@ -40,18 +41,18 @@ export default function Navigation(props: NavigationProps) {
                 }
             }
         ]
-    }
+    };
 
     return (
         <nav className={classes.Navigation}>
-            <Slider {...sliderConfig} >
+            <Slider {...settings} >
                 {props.links.map((agentName, i) => (
                     <h3 key={`${agentName}-${i}`}
                         className={classes.LinkHeader}>
                         <NavLink
                             draggable={false}
                             className={classes.Link}
-                            activeClassName={classes.Active}
+                            activeClassName={classes.Active} // Active css class
                             to={`${url}/${agentName.toLowerCase()}`}>
                                 <sup className={classes.Count}>{i+1}</sup>{agentName}
                         </NavLink>

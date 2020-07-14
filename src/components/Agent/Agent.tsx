@@ -4,15 +4,12 @@ import { Transition } from 'react-transition-group';
 import classes from './Agent.module.scss';
 
 interface AgentProps extends React.Props<any> {
-    // Path to image
-    image: string | undefined;
-    // Agent role
+    imgURL: string | undefined;
     role: string | undefined;
-    //  Agent Biography
     biography: string | undefined;
+    // Animation state control, true = animate "in to the VIEW", false = "hide from the VIEW"
     in: boolean;
 }
-
 
 const duration = 300;
 
@@ -21,6 +18,7 @@ const defaultStyle = {
     opacity: 0
 }
 
+// "in&hide" states animation styles
 const agentInfoStyles: any = {
     entering: { opacity: 0, transform: 'translateY(-100px)' },
     entered:  { opacity: 1, transform: 'none' },
@@ -28,6 +26,7 @@ const agentInfoStyles: any = {
     exited:   { opacity: 0, transform: 'none' }
 };
 
+// "in&hide" states animation styles
 const agentImageStyles: any = {
     entering: { opacity: 0, transform: 'scale(0.9)' },
     entered:  { opacity: 1, transform: 'none' },
@@ -38,28 +37,32 @@ const agentImageStyles: any = {
 export default function Agent(props: AgentProps) {
     return (
         <div className={classes.AgentContainer}>
-            <Transition in={props.in} timeout={duration}>
-                {state => (
+            <Transition
+                in={props.in}
+                timeout={duration}>
+                {state => ( // Animation state: entering, entered, exiting, exited
                     <img
                         style={{
                             ...defaultStyle,
                             ...agentImageStyles[state]
                         }}
                         draggable={false}
-                        src={props?.image}
+                        src={props?.imgURL}
                         alt="Agent"
                         className={classes.AgentImage} />
                 )}
             </Transition>
-            <Transition in={props.in} timeout={duration}>
-                {state => (
+            <Transition
+                in={props.in}
+                timeout={duration}>
+                {state => ( // Animation state: entering, entered, exiting, exited
                     <div className={classes.AgentInfo} style={{
                         ...defaultStyle,
                         ...agentInfoStyles[state]
                     }}>
-                        <span>// ROLE</span>
+                        <span>// תפקיד</span>
                         <p>{props?.role}</p>
-                        <span>// BIOGRAPHY</span>
+                        <span>// ביוגרפיה</span>
                         <p>{props?.biography}</p>
                     </div>
                 )}

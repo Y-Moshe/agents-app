@@ -20,7 +20,9 @@
 }
 
 .AgentInfo {
-    margin: 20px;
+    direction: rtl;
+    text-align: right;
+    margin: 20px 50px 20px 20px;
     color: $preferred-color;
     font-family: $font-stack;
 

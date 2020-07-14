@@ -22,5 +22,9 @@
 }
 
 .AbilityImage {
-    height: 100px;
+    height: 70px;
+    
+    @media (min-width: 576px) {
+        height: 100px;
+    }
 }

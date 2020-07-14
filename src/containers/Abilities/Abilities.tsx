@@ -7,6 +7,7 @@ import { AbilityData } from '../../AgentsData';
 
 interface AbilitiesProps extends React.Props<any> {
     abilities: AbilityData[];
+    // onClick event to update the relevant video.
     onClick: (index: number) => void;
 }
 
@@ -17,27 +18,35 @@ const defaultStyle = {
     opacity: 0
 };
 
+// "in&hide" states animation styles
 const abilitiesInfoStyles: any = {
-    entering: { opacity: 0, transform: 'translateX(-50px)' },
+    entering: { opacity: 0, transform: 'translateX(50px)' },
     entered:  { opacity: 1, transform: 'none' },
-    exiting:  { opacity: 0, transform: 'translateX(50px)' },
+    exiting:  { opacity: 0, transform: 'translateX(-50px)' },
     exited:   { opacity: 0, transform: 'none' }
 };
 
 export default function Abilities(props: AbilitiesProps) {
-    const [ability, setAbility] = useState<AbilityData>();
-    const [showInfo, setShowInfo] = useState(true);
-    const [isActive, setIsActive] = useState(0);
+    const [ability, setAbility] = useState<AbilityData>(); // hold ability object
+    const [showInfo, setShowInfo] = useState(true); // hold transition / animation trigger
+    const [isActive, setIsActive] = useState(0); // hold the index of the ability in abilities array.
 
+    // function to execute whenever ability object changes.
     useEffect(() => {
+        // hide info, which is ability name and description by animate them
         setShowInfo(false);
         setTimeout(() => {
+            // after the ${duration}ms display them with animation set.
             setShowInfo(true);
-        }, 300);
+        }, duration);
     }, [ability]);
     
+    // this function will fire whenever all abilities agent change
+    // which is when diffrent agent was selected
     useEffect(() => {
+        // reset selected current ability
         setAbility(undefined);
+        // set the video active to the first ability as the default.
         setIsActive(0);
     }, [props.abilities]);
 
@@ -45,9 +54,9 @@ export default function Abilities(props: AbilitiesProps) {
         // @ts-ignore
         setAbility({ ...props.abilities[index] })
         setIsActive(index);
-        props.onClick(index);
+        props.onClick(index); // that functioin will set the relevant video
     };
-    
+
     const abilities = props.abilities?.map((ability, index) => (
         <Ability
             key={ability.name.toLowerCase()}
@@ -62,13 +71,17 @@ export default function Abilities(props: AbilitiesProps) {
     
     return (
         <div className={classes.Abilities}>
-            <h2 className={classes.AbilitiesTitle}>SPECIAL ABILITIES</h2>
-            <div className={classes.AbilitiesImages}>
+            <h2 className={classes.AbilitiesTitle}>יכולות מיוחדות</h2>
+            <div
+                dir="rtl"
+                className={classes.AbilitiesImages}>
                 {abilities}
             </div>
-            <Transition in={showInfo} timeout={duration}>
+            <Transition
+                in={showInfo}
+                timeout={duration}>
                 {state => (
-                    <div style={{
+                    <div dir="rtl" style={{
                         ...defaultStyle,
                         ...abilitiesInfoStyles[state]
                     }}>
