@@ -7,9 +7,8 @@ import App from './App';
 
 import * as serviceWorker from './serviceWorker';
 
-// The basename is required to work with wordpress at /index.php/agents/:agentName
 ReactDOM.render(
-  <Router basename="/index.php"> 
+  <Router> 
     <App />
   </Router>,
   document.getElementById('react-root')

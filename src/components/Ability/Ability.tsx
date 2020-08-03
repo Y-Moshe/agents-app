@@ -10,6 +10,9 @@ export interface AbilityProps extends React.Props<any> {
 }
 
 export default function Ability(props: AbilityProps) {
+    if (!props.name) {
+        return null;
+    }
     // active class will be apply only if props.active is set to "true"
     const classes2Set = [classes.Ability, props.active ?
          classes.Active : null].join(' ');

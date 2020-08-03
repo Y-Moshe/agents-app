@@ -3,9 +3,10 @@ import { NavLink, useRouteMatch } from 'react-router-dom';
 import Slider, { Settings } from 'react-slick';
 
 import classes from './Navigation.module.scss';
+import { ILink } from '../../API';
 
 interface NavigationProps extends React.Props<any> {
-    links: string[];
+    links: ILink[];
 }
 
 export default function Navigation(props: NavigationProps) {
@@ -46,15 +47,18 @@ export default function Navigation(props: NavigationProps) {
     return (
         <nav className={classes.Navigation}>
             <Slider {...settings} >
-                {props.links.map((agentName, i) => (
-                    <h3 key={`${agentName}-${i}`}
+                {props.links.map((agent, i) => (
+                    <h3 key={agent.id}
                         className={classes.LinkHeader}>
                         <NavLink
                             draggable={false}
                             className={classes.Link}
                             activeClassName={classes.Active} // Active css class
-                            to={`${url}/${agentName.toLowerCase()}`}>
-                                <sup className={classes.Count}>{i+1}</sup>{agentName}
+                            to={{
+                                pathname: url.concat('/', agent.name.toLowerCase()),
+                                search: '?id='.concat(agent.id.toString())
+                            }}>
+                                <sup className={classes.Count}>{i+1}</sup>{agent.name}
                         </NavLink>
                     </h3>
                 ))}

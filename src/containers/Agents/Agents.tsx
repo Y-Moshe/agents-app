@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Route, useRouteMatch, matchPath, RouteChildrenProps } from 'react-router';
 import { PuffLoader } from 'react-spinners';
 import { Container, Row, Col } from 'react-bootstrap';
+import { AxiosResponse } from 'axios';
 
 import classes from './Agents.module.scss';
 import Navigation from '../../components/Navigation/Navigation';
 import Agent from '../../components/Agent/Agent';
-import AgentsData, { getAgent, AgentData, maps } from '../../AgentsData';
 import Abilities from '../Abilities/Abilities';
-import Maps from '../Maps/Maps';
+import API, { ILink, IAgent } from '../../API';
 
 // a Function returns the params for the given url.
 const getParams = (pathname: string, url: string) => {
@@ -25,11 +25,18 @@ interface AgentsProps extends React.Props<any>, RouteChildrenProps {}
 export default function Agents(props: AgentsProps) {
     const { url } = useRouteMatch();
 
-    const [agent, setAgent] = useState<AgentData>();
+    const [agent, setAgent] = useState<IAgent>();
     const [isAgentLoad, setIsAgentLoad] = useState(false); // hold the transition / animation trigger
     const [activeAbility, setActiveAbility] = useState(0); // hold the index of the ability in ablities array
-    const [isLoading, setIsLoading] = useState(false); // for the spinner
-    const [activeMap, setActiveMap] = useState(''); // the map name, lowercase only!
+    const [isLoading, setIsLoading] = useState(false); // video spinner
+    const [links, setLinks] = useState<ILink[]>([]); // array of link objects { id, name. imgURL(not required this project) }
+
+    // Fetch links
+    useEffect(() => {
+        API.get('/agents').then((response: AxiosResponse) => {
+            setLinks(response.data);
+        });
+    }, []);
 
     // fires when url changes
     useEffect(() => {
@@ -37,18 +44,22 @@ export default function Agents(props: AgentsProps) {
 
         // do the folowing only if 'agent' param exists(/agents/:agent)
         if (params && params.agent) {
-            setAgent(getAgent(params.agent));
+            const id: any = new URLSearchParams(props.location.search).get('id');
+
             setActiveAbility(0);
             setIsAgentLoad(false); // animation is applied
-            setTimeout(() => {
+            API.get('/'.concat(id)).then((response: AxiosResponse) => {
+                const agentData = {
+                    ...response.data,
+                    abilities: JSON.parse(response.data.abilities)
+                };
+
+                setAgent(agentData);
                 setIsAgentLoad(true); // animation is applied
-            }, 300);
+            });
         }
 
     }, [props.location, url]);
-
-    // array of links: ['JETT','RAZE', ...]
-    const links = AgentsData.map(agentObject => agentObject.name.toUpperCase());
     
     return (
         <Container fluid style={{padding: 0}}>
@@ -74,8 +85,7 @@ export default function Agents(props: AgentsProps) {
                     )}  />
                 </Col>
             </Row>
-            {agent && (<>
-            <Row className={classes.ContentRow} noGutters>
+            {agent && (<Row className={classes.ContentRow} noGutters>
                 <Col xl="6" style={{padding: 60}}>
                     <Abilities
                         abilities={agent?.abilities}
@@ -100,30 +110,7 @@ export default function Agents(props: AgentsProps) {
                         </video>
                     </div>
                 </Col>
-            </Row>
-            <h2 className={classes.TipsTitle}>טיפים וטריקים</h2>
-            <Row className={classes.MapsRow} noGutters>
-                <Col xs="12" style={{display: 'flex'}}>
-                    <Maps
-                        maps={maps}
-                        onMapClick={(map) => setActiveMap(map.trim().toLowerCase())} />
-                </Col>
-                <Col xs="12">
-                    <div className={classes.VideoTips} hidden={!activeMap}>
-                        {
-                            // looping through all videos for the selected map
-                            // @ts-ignore
-                        agent && agent.abilities[activeAbility].mapTips[activeMap]
-                            ?.map((vid, i) => (
-                                <video
-                                    key={i + 'ac34s3'}
-                                    controls
-                                    src={vid} />
-                        ))}
-                    </div>
-                </Col>
-
-            </Row></>)}
+            </Row>)}
         </Container>
     )
 }

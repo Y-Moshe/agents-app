@@ -3,10 +3,10 @@ import { Transition } from 'react-transition-group';
 
 import classes from './Abilities.module.scss';
 import Ability from '../../components/Ability/Ability';
-import { AbilityData } from '../../AgentsData';
+import { IAbility } from '../../API';
 
 interface AbilitiesProps extends React.Props<any> {
-    abilities: AbilityData[];
+    abilities: IAbility[];
     // onClick event to update the relevant video.
     onClick: (index: number) => void;
 }
@@ -27,7 +27,7 @@ const abilitiesInfoStyles: any = {
 };
 
 export default function Abilities(props: AbilitiesProps) {
-    const [ability, setAbility] = useState<AbilityData>(); // hold ability object
+    const [ability, setAbility] = useState<IAbility>(); // hold ability object
     const [showInfo, setShowInfo] = useState(true); // hold transition / animation trigger
     const [isActive, setIsActive] = useState(0); // hold the index of the ability in abilities array.
 
@@ -59,11 +59,11 @@ export default function Abilities(props: AbilitiesProps) {
 
     const abilities = props.abilities?.map((ability, index) => (
         <Ability
-            key={ability.name.toLowerCase()}
+            key={ability?.name ? ability.name : index}
             active={isActive === index}
-            name={ability.name}
+            name={ability?.name}
             onClick={() => handleClick(index)}
-            image={ability.image} />
+            image={ability?.image} />
     ));
 
     const defualtAbilityName = props.abilities[0].name;
