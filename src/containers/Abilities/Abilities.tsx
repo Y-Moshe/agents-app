@@ -29,7 +29,7 @@ const abilitiesInfoStyles: any = {
 export default function Abilities(props: AbilitiesProps) {
     const [ability, setAbility] = useState<IAbility>(); // hold ability object
     const [showInfo, setShowInfo] = useState(true); // hold transition / animation trigger
-    const [isActive, setIsActive] = useState(0); // hold the index of the ability in abilities array.
+    const [activeAbility, setActiveAbility] = useState(0); // hold the index of the ability in abilities array.
 
     // function to execute whenever ability object changes.
     useEffect(() => {
@@ -46,21 +46,21 @@ export default function Abilities(props: AbilitiesProps) {
     useEffect(() => {
         // reset selected current ability
         setAbility(undefined);
-        // set the video active to the first ability as the default.
-        setIsActive(0);
+        // set the active ability to the first ability as the default.
+        setActiveAbility(0);
     }, [props.abilities]);
 
     const handleClick = (index: number) => {
         // @ts-ignore
         setAbility({ ...props.abilities[index] })
-        setIsActive(index);
+        setActiveAbility(index);
         props.onClick(index); // that functioin will set the relevant video
     };
 
     const abilities = props.abilities?.map((ability, index) => (
         <Ability
             key={ability?.name ? ability.name : index}
-            active={isActive === index}
+            active={activeAbility === index}
             name={ability?.name}
             onClick={() => handleClick(index)}
             image={ability?.image} />

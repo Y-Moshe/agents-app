@@ -42,8 +42,9 @@ export default function Agents(props: AgentsProps) {
     useEffect(() => {
         const params: any = getParams(props.location.pathname, url);
 
-        // do the folowing only if 'agent' param exists(/agents/:agent)
+        // do the folowing only if 'agent' param exists(/:agent)
         if (params && params.agent) {
+            // gets the id from the queryParams
             const id: any = new URLSearchParams(props.location.search).get('id');
 
             setActiveAbility(0);
@@ -68,16 +69,15 @@ export default function Agents(props: AgentsProps) {
                     <Navigation links={links} />
                 </Col>
                 <Col xl="8">
-                    { // display agents image if we at exact /agents
+                    { // display agents image if we at exact /
                     props.match?.isExact &&
                      <img
                         draggable={false}
                         src="http://playvalorant.co.il/wp-content/uploads/2020/07/19201080333989.png"
                         alt="Agents"
                         className="img-fluid" />}
-                    <Route path={`${url}/:agent`} render={(p) => (
+                    <Route path={`${url}/:agent`} render={() => (
                         <Agent
-                            {...p}
                             in={isAgentLoad}
                             imgURL={agent?.imgURL}
                             role={agent?.role}
