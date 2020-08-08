@@ -1,16 +1,19 @@
-import React from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import Slider, { Settings } from 'react-slick';
 
 import classes from './Navigation.module.scss';
-import { ILink } from '../../API';
+import { ILink, getLinks } from '../../API';
 
-interface NavigationProps extends React.Props<any> {
-    links: ILink[];
-}
+function Navigation() {
+    const [links, setLinks] = useState<ILink[]>([]); // array of link objects { id, name }
 
-export default function Navigation(props: NavigationProps) {
-    let { url } = useRouteMatch();
+    // Fetch links once
+    useEffect(() => {
+        getLinks().then(links => {
+            setLinks(links);
+        }).catch(error => console.log(error));
+    }, []);
 
     // Slider settings, and responsive configuration.
     const settings: Settings = {
@@ -47,7 +50,7 @@ export default function Navigation(props: NavigationProps) {
     return (
         <nav className={classes.Navigation}>
             <Slider {...settings} >
-                {props.links.map((agent, i) => (
+                {links.map((agent, i) => (
                     <h3 key={agent.id}
                         className={classes.LinkHeader}>
                         <NavLink
@@ -55,7 +58,7 @@ export default function Navigation(props: NavigationProps) {
                             className={classes.Link}
                             activeClassName={classes.Active} // Active css class
                             to={{
-                                pathname: url.concat('/', agent.name.toLowerCase()),
+                                pathname: '/'.concat(agent.name.toLowerCase()),
                                 search: '?id='.concat(agent.id.toString())
                             }}>
                                 <sup className={classes.Count}>{i+1}</sup>{agent.name}
@@ -66,3 +69,5 @@ export default function Navigation(props: NavigationProps) {
         </nav>
     )
 }
+
+export default React.memo(Navigation);

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Transition } from 'react-transition-group';
 
-import classes from './Agent.module.scss';
+import classes from './AgentProfile.module.scss';
 
-interface AgentProps extends React.Props<any> {
-    imgURL: string | undefined;
-    role: string | undefined;
-    biography: string | undefined;
+interface AgentProfileProps extends React.Props<any> {
+    imgURL: string;
+    role: string;
+    biography: string;
     // Animation state control, true = animate "in to the VIEW", false = "hide from the VIEW"
     in: boolean;
 }
@@ -16,7 +16,7 @@ const duration = 300;
 const defaultStyle = {
     transition: `${duration}ms`,
     opacity: 0
-}
+};
 
 // "in&hide" states animation styles
 const agentInfoStyles: any = {
@@ -34,7 +34,7 @@ const agentImageStyles: any = {
     exited:   { opacity: 0, transform: 'none' }
 };
 
-export default function Agent(props: AgentProps) {
+export default function AgentProfile(props: AgentProfileProps) {
     return (
         <div className={classes.AgentContainer}>
             <Transition
@@ -47,7 +47,7 @@ export default function Agent(props: AgentProps) {
                             ...agentImageStyles[state]
                         }}
                         draggable={false}
-                        src={props?.imgURL}
+                        src={props.imgURL}
                         alt="Agent"
                         className={classes.AgentImage} />
                 )}
@@ -61,9 +61,9 @@ export default function Agent(props: AgentProps) {
                         ...agentInfoStyles[state]
                     }}>
                         <span>// תפקיד</span>
-                        <p>{props?.role}</p>
+                        <p>{props.role}</p>
                         <span>// ביוגרפיה</span>
-                        <p>{props?.biography}</p>
+                        <p>{props.biography}</p>
                     </div>
                 )}
             </Transition>

@@ -30,44 +30,35 @@ export default function Abilities(props: AbilitiesProps) {
     const [ability, setAbility] = useState<IAbility>(); // hold ability object
     const [showInfo, setShowInfo] = useState(true); // hold transition / animation trigger
     const [activeAbility, setActiveAbility] = useState(0); // hold the index of the ability in abilities array.
-
-    // function to execute whenever ability object changes.
-    useEffect(() => {
-        // hide info, which is ability name and description by animate them
-        setShowInfo(false);
-        setTimeout(() => {
-            // after the ${duration}ms display them with animation set.
-            setShowInfo(true);
-        }, duration);
-    }, [ability]);
     
     // this function will fire whenever all abilities agent change
     // which is when diffrent agent was selected
     useEffect(() => {
-        // reset selected current ability
-        setAbility(undefined);
+        // reset selected current ability to the first
+        setAbility({ ...props.abilities[0] });
         // set the active ability to the first ability as the default.
         setActiveAbility(0);
     }, [props.abilities]);
 
     const handleClick = (index: number) => {
-        // @ts-ignore
-        setAbility({ ...props.abilities[index] })
-        setActiveAbility(index);
-        props.onClick(index); // that functioin will set the relevant video
+        setShowInfo(false); // hide, animation is applied
+        setTimeout(() => {
+            // after the ${duration}ms display them with animation style set.
+            setShowInfo(true);
+            setAbility({ ...props.abilities[index] }); // will set the clicked ability
+            setActiveAbility(index);
+            props.onClick(index); // that function will set the relevant video based on that index
+        }, duration);
     };
 
     const abilities = props.abilities?.map((ability, index) => (
         <Ability
-            key={ability?.name ? ability.name : index}
+            key={`${ability?.name}-${index}`}
             active={activeAbility === index}
-            name={ability?.name}
-            onClick={() => handleClick(index)}
-            image={ability?.image} />
+            name={ability.name}
+            image={ability.image}
+            onClick={() => handleClick(index)} />
     ));
-
-    const defualtAbilityName = props.abilities[0].name;
-    const defualtAbilityDescription = props.abilities[0].description;
     
     return (
         <div className={classes.Abilities}>
@@ -85,8 +76,8 @@ export default function Abilities(props: AbilitiesProps) {
                         ...defaultStyle,
                         ...abilitiesInfoStyles[state]
                     }}>
-                        <h3 className={classes.AbilityTitle}>{ability ? ability.name : defualtAbilityName}</h3>
-                        <p className={classes.AbilityDescription}>{ability ? ability.description : defualtAbilityDescription}</p>
+                        <h3 className={classes.AbilityTitle}>{ability?.name}</h3>
+                        <p className={classes.AbilityDescription}>{ability?.description}</p>
                     </div>
                 )}
             </Transition>
