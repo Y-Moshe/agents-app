@@ -48,7 +48,7 @@ export default function Abilities(props: AbilitiesProps) {
             setAbility({ ...props.abilities[index] }); // will set the clicked ability
             setActiveAbility(index);
             props.onClick(index); // that function will set the relevant video based on that index
-        }, duration);
+        }, duration - 70);
     };
 
     const abilities = props.abilities?.map((ability, index) => (

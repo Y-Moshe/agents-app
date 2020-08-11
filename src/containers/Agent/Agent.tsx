@@ -14,7 +14,7 @@ interface AgentProps extends React.Props<any>, RouteChildrenProps {}
 export default function Agent(props: AgentProps) {
     const params: any = useParams();
 
-    const [agent, setAgent] = useState<IAgent>();
+    const [agentData, setAgentData] = useState<IAgent>();
     const [isAgentLoaded, setIsAgentLoaded] = useState(false); // hold the transition / animation trigger
     const [activeAbility, setActiveAbility] = useState(0); // hold the index of the ability in ablities array
     const [isLoading, setIsLoading] = useState(false); // video spinner
@@ -30,11 +30,9 @@ export default function Agent(props: AgentProps) {
             setIsAgentLoaded(false); // animation is applied
             getAgent(id).then(agentData => {
                 setIsAgentLoaded(true); // animation is applied
-                // timeout is only for the animation.
-                // show animation when finished to hide.
                 setTimeout(() => {
-                    setAgent(agentData);
-                }, 200);
+                    setAgentData(agentData);
+                }, 250);
             }).catch(error => console.log(error));
         }
 
@@ -47,17 +45,17 @@ export default function Agent(props: AgentProps) {
                     <Navigation />
                 </Col>
                 <Col xl="8">
-                    {agent && <AgentProfile
+                    {agentData && <AgentProfile
                         in={isAgentLoaded}
-                        imgURL={agent.imgURL}
-                        role={agent.role}
-                        biography={agent.biography} />}
+                        imgURL={agentData.imgURL}
+                        role={agentData.role}
+                        biography={agentData.biography} />}
                 </Col>
             </Row>
-            {agent && (<Row className={classes.ContentRow} noGutters>
+            {agentData && (<Row className={classes.ContentRow} noGutters>
                 <Col xl="6" style={{padding: 60}}>
                     <Abilities
-                        abilities={agent.abilities}
+                        abilities={agentData.abilities}
                         onClick={(index) => setActiveAbility(index)} />
                 </Col>
                 <Col xl="6">
@@ -75,7 +73,7 @@ export default function Agent(props: AgentProps) {
                             autoPlay
                             onLoadStart={() => setIsLoading(true)}
                             onLoadedData={() => setIsLoading(false)}
-                            src={agent.abilities[activeAbility].videoURL}>
+                            src={agentData.abilities[activeAbility].videoURL}>
                         </video>
                     </div>
                 </Col>

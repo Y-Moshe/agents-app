@@ -1,4 +1,10 @@
+## Project
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Before deployment
+
+Update basename on "index.tsx", required!
 
 ## Available Scripts
 

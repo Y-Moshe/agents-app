@@ -61,7 +61,7 @@ function Navigation() {
                                 pathname: '/'.concat(agent.name.toLowerCase()),
                                 search: '?id='.concat(agent.id.toString())
                             }}>
-                                <sup className={classes.Count}>{i+1}</sup>{agent.name}
+                                <sup className={classes.Count}>{i+1}</sup>{agent.name.toUpperCase()}
                         </NavLink>
                     </h3>
                 ))}
