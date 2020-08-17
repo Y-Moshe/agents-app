@@ -30,18 +30,7 @@ const API = axios.create({
  * @returns A Promise with an array of ILink interface.
  */
 export function getLinks(): Promise<ILink[]> {
-    return new Promise<ILink[]>((resolve, reject) => {
-        API.get('/agents').then((response: AxiosResponse) => {
-            const links: ILink[] = (response.data as []).map((linkObj: any) => {
-                return {
-                    id: linkObj.id,
-                    name: linkObj.name
-                };
-            });
-
-            resolve(links);
-        }).catch(error => reject(error));
-    });
+    return API.get('/agents');
 }
 
 /**

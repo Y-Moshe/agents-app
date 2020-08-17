@@ -1,7 +1,7 @@
 rm -rf build/
-rm /var/www/wordpress/wp-includes/css/dist/agents-app/*
-rm /var/www/wordpress/wp-includes/js/dist/agents-app/*
+rm /var/www/html/wp-content/plugins/agents-app/agents-app/css/*
+rm /var/www/html/wp-content/plugins/agents-app/agents-app/js/*
 yarn build
-cp build/static/css/*.css /var/www/wordpress/wp-includes/css/dist/agents-app/
-cp build/static/js/*.js /var/www/wordpress/wp-includes/js/dist/agents-app/
+cp build/static/css/*.css /var/www/html/wp-content/plugins/agents-app/agents-app/css/
+cp build/static/js/*.js /var/www/html/wp-content/plugins/agents-app/agents-app/js/
 notify-send -u 'critical' 'Deployment' 'Successfully Deployed to Localhost WordPress'
