@@ -29,7 +29,7 @@ const API = axios.create({
  * Get links array from the DB.
  * @returns A Promise with an array of ILink interface.
  */
-export function getLinks(): Promise<ILink[]> {
+export function getLinks(): Promise<AxiosResponse<ILink[]>> {
     return API.get('/agents');
 }
 

@@ -29,8 +29,8 @@ export default function Agent(props: AgentProps) {
             setActiveAbility(0);
             setIsAgentLoaded(false); // animation is applied
             getAgent(id).then(agentData => {
-                setIsAgentLoaded(true); // animation is applied
                 setTimeout(() => {
+                    setIsAgentLoaded(true); // animation is applied
                     setAgentData(agentData);
                 }, 250);
             }).catch(error => console.log(error));

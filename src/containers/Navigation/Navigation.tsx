@@ -10,8 +10,8 @@ function Navigation() {
 
     // Fetch links once
     useEffect(() => {
-        getLinks().then(links => {
-            setLinks(links);
+        getLinks().then(response => {
+            setLinks(response.data);
         }).catch(error => console.log(error));
     }, []);
 

@@ -3,14 +3,6 @@ import { Transition } from 'react-transition-group';
 
 import classes from './AgentProfile.module.scss';
 
-interface AgentProfileProps extends React.Props<any> {
-    imgURL: string;
-    role: string;
-    biography: string;
-    // Animation state control, true = animate "in to the VIEW", false = "hide from the VIEW"
-    in: boolean;
-}
-
 const duration = 300;
 
 const defaultStyle = {
@@ -34,13 +26,21 @@ const agentImageStyles: any = {
     exited:   { opacity: 0, transform: 'none' }
 };
 
+interface AgentProfileProps extends React.Props<any> {
+    imgURL: string;
+    role: string;
+    biography: string;
+    // Animation state control, true = animate "in to the VIEW", false = "hide from the VIEW"
+    in: boolean;
+}
+
 export default function AgentProfile(props: AgentProfileProps) {
     return (
         <div className={classes.AgentContainer}>
             <Transition
                 in={props.in}
                 timeout={duration}>
-                {state => ( // Animation state: entering, entered, exiting, exited
+                {state => (<>
                     <img
                         style={{
                             ...defaultStyle,
@@ -50,22 +50,19 @@ export default function AgentProfile(props: AgentProfileProps) {
                         src={props.imgURL}
                         alt="Agent"
                         className={classes.AgentImage} />
-                )}
-            </Transition>
-            <Transition
-                in={props.in}
-                timeout={duration}>
-                {state => ( // Animation state: entering, entered, exiting, exited
-                    <div className={classes.AgentInfo} style={{
-                        ...defaultStyle,
-                        ...agentInfoStyles[state]
-                    }}>
+
+                    <div
+                        className={classes.AgentInfo}
+                        style={{
+                            ...defaultStyle,
+                            ...agentInfoStyles[state]
+                        }}>
                         <span>// תפקיד</span>
                         <p>{props.role}</p>
                         <span>// ביוגרפיה</span>
                         <p>{props.biography}</p>
                     </div>
-                )}
+                </>)}
             </Transition>
         </div>
     )
