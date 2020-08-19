@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Slider, { Settings } from 'react-slick';
 
 import classes from './Navigation.module.scss';
-import { ILink, getLinks } from '../../API';
+import { ILink } from '../../API';
 
-function Navigation() {
-    const [links, setLinks] = useState<ILink[]>([]); // array of link objects { id, name }
+interface NavigationProps extends React.Props<any> {
+    links: ILink[] | undefined;
+    url: string;
+}
 
-    // Fetch links once
-    useEffect(() => {
-        getLinks().then(response => {
-            setLinks(response.data);
-        }).catch(error => console.log(error));
-    }, []);
+function Navigation(props: NavigationProps) {
+    if (!props.links) {
+        return null;
+    }
 
     // Slider settings, and responsive configuration.
     const settings: Settings = {
@@ -50,7 +50,7 @@ function Navigation() {
     return (
         <nav className={classes.Navigation}>
             <Slider {...settings} >
-                {links.map((agent, i) => (
+                {props.links.map((agent, i) => (
                     <h3 key={agent.id}
                         className={classes.LinkHeader}>
                         <NavLink
@@ -58,7 +58,7 @@ function Navigation() {
                             className={classes.Link}
                             activeClassName={classes.Active} // Active css class
                             to={{
-                                pathname: '/'.concat(agent.name.toLowerCase()),
+                                pathname: props.url.concat(agent.name.toLowerCase()),
                                 search: '?id='.concat(agent.id.toString())
                             }}>
                                 <sup className={classes.Count}>{i+1}</sup>{agent.name.toUpperCase()}
@@ -70,4 +70,4 @@ function Navigation() {
     )
 }
 
-export default React.memo(Navigation);
+export default Navigation;

@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Before deployment
 
 Update basename on "index.tsx", required!
+And baseURL on API.tsx!
 
 ## Available Scripts
 

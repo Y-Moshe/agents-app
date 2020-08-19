@@ -27,9 +27,9 @@ const agentImageStyles: any = {
 };
 
 interface AgentProfileProps extends React.Props<any> {
-    imgURL: string;
-    role: string;
-    biography: string;
+    imgURL: string | undefined;
+    role: string | undefined;
+    biography: string | undefined;
     // Animation state control, true = animate "in to the VIEW", false = "hide from the VIEW"
     in: boolean;
 }
